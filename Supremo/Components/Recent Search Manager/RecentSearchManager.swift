@@ -26,8 +26,13 @@ extension Array {
 struct RecentSearchManager<T: Codable> where T : Equatable  {
     
     static func saveCustomObjects(_ object: T, _ key: String) {
-        guard var savedData = RecentSearchManager<T>.getCustomObjects(key), !savedData.contains(obj: object) else {return}
-        savedData.append(object)
+        var savedData = RecentSearchManager<T>.getCustomObjects(key)
+        if !savedData.contains(obj: object) {
+            savedData.append(object)
+        } else {
+            return
+        }
+        
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(savedData)
@@ -37,7 +42,7 @@ struct RecentSearchManager<T: Codable> where T : Equatable  {
         }
     }
     
-    static func getCustomObjects(_ key: String) -> [T]? {
+    static func getCustomObjects(_ key: String) -> [T] {
         if let data = UserDefaults.standard.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
@@ -45,8 +50,9 @@ struct RecentSearchManager<T: Codable> where T : Equatable  {
                 return decoded
             } catch {
                 print("Unable to Decode Notes (\(error))")
+                return [T]()
             }
         }
-        return nil
+        return [T]()
     }
 }

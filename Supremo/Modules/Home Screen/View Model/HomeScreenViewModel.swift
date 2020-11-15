@@ -10,7 +10,6 @@ import Foundation
 class HomeScreenViewModel {
     
     func getRecentSearches() -> [SearchedResult] {
-        guard let recent = RecentSearchManager<SearchedResult>.getCustomObjects(UserDefaultsKeys.recentSearches.key) else {return [SearchedResult]()}
-        return recent
+        return RecentSearchManager<SearchedResult>.getCustomObjects(UserDefaultsKeys.recentSearches.key)
     }
 }
