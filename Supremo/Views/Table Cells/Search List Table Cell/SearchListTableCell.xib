@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Light.ttf">
+            <string>Poppins-Light</string>
+        </array>
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchListTableCell" id="KGk-i7-Jjw" customClass="SearchListTableCell" customModule="Supremo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZ8-Td-Sry">
+                        <rect key="frame" x="28" y="13.5" width="358" height="123"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkK-Kt-KrK">
+                        <rect key="frame" x="20" y="7.5" width="374" height="135"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qWP-cP-tvg" customClass="SwiftyImageDownloader" customModule="Supremo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="135"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spider-Man" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nde-fq-H0y">
+                                <rect key="frame" x="108" y="20" width="258" height="25.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="None; formerly New Warriors" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVn-5q-RxI">
+                                <rect key="frame" x="108" y="53.5" width="258" height="20"/>
+                                <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="nde-fq-H0y" secondAttribute="trailing" constant="8" id="5VL-Pe-9Pb"/>
+                            <constraint firstAttribute="bottom" secondItem="qWP-cP-tvg" secondAttribute="bottom" id="5Yq-NA-4jV"/>
+                            <constraint firstItem="nde-fq-H0y" firstAttribute="top" secondItem="TkK-Kt-KrK" secondAttribute="top" constant="20" id="A2j-mj-NbS"/>
+                            <constraint firstItem="kVn-5q-RxI" firstAttribute="leading" secondItem="qWP-cP-tvg" secondAttribute="trailing" constant="8" symbolic="YES" id="GLR-gb-bNz"/>
+                            <constraint firstItem="qWP-cP-tvg" firstAttribute="width" secondItem="TkK-Kt-KrK" secondAttribute="width" multiplier="100:374" id="OJa-8j-HiP"/>
+                            <constraint firstItem="qWP-cP-tvg" firstAttribute="top" secondItem="TkK-Kt-KrK" secondAttribute="top" id="Ppy-FS-Tn1"/>
+                            <constraint firstItem="qWP-cP-tvg" firstAttribute="leading" secondItem="TkK-Kt-KrK" secondAttribute="leading" id="U4D-e2-7Pm"/>
+                            <constraint firstAttribute="trailing" secondItem="kVn-5q-RxI" secondAttribute="trailing" constant="8" id="VA7-m2-cpc"/>
+                            <constraint firstItem="nde-fq-H0y" firstAttribute="leading" secondItem="qWP-cP-tvg" secondAttribute="trailing" constant="8" id="dtU-c5-E0h"/>
+                            <constraint firstItem="kVn-5q-RxI" firstAttribute="top" secondItem="nde-fq-H0y" secondAttribute="bottom" constant="8" id="pec-wK-3uM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="TkK-Kt-KrK" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="180:200" id="35A-FE-kkQ"/>
+                    <constraint firstItem="MZ8-Td-Sry" firstAttribute="centerY" secondItem="TkK-Kt-KrK" secondAttribute="centerY" id="70g-9I-fVF"/>
+                    <constraint firstItem="TkK-Kt-KrK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="JfK-Zg-1ns"/>
+                    <constraint firstItem="MZ8-Td-Sry" firstAttribute="centerX" secondItem="TkK-Kt-KrK" secondAttribute="centerX" id="RKr-aj-yym"/>
+                    <constraint firstItem="TkK-Kt-KrK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="d5V-sT-Vim"/>
+                    <constraint firstItem="MZ8-Td-Sry" firstAttribute="height" secondItem="TkK-Kt-KrK" secondAttribute="height" multiplier="164:180" id="f2a-KQ-4BU"/>
+                    <constraint firstItem="TkK-Kt-KrK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="374:414" id="idX-17-Kut"/>
+                    <constraint firstItem="MZ8-Td-Sry" firstAttribute="width" secondItem="TkK-Kt-KrK" secondAttribute="width" multiplier="358:374" id="t17-99-PS8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="backgroundShadowView" destination="MZ8-Td-Sry" id="h8D-iW-tfP"/>
+                <outlet property="containerView" destination="TkK-Kt-KrK" id="lYK-Ov-YSg"/>
+                <outlet property="descriptionLabel" destination="kVn-5q-RxI" id="hxY-wP-hDC"/>
+                <outlet property="posterImageView" destination="qWP-cP-tvg" id="7uT-Jn-eiF"/>
+                <outlet property="titleLabel" destination="nde-fq-H0y" id="314-IV-RG1"/>
+            </connections>
+            <point key="canvasLocation" x="122" y="104"/>
+        </tableViewCell>
+    </objects>
+</document>
