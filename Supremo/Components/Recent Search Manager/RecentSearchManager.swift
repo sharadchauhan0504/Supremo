@@ -17,17 +17,20 @@ enum UserDefaultsKeys {
     }
 }
 
-struct RecentSearchManager<T: Codable> {
+extension Array {
+    func contains<T>(obj: T) -> Bool where T : Equatable {
+        return self.filter({$0 as? T == obj}).count > 0
+    }
+}
+
+struct RecentSearchManager<T: Codable> where T : Equatable  {
     
     static func saveCustomObjects(_ object: T, _ key: String) {
-        var data = [T]()
-        if let savedData = RecentSearchManager<T>.getCustomObjects(key) {
-            data = savedData
-        }
-        data.append(object)
+        guard var savedData = RecentSearchManager<T>.getCustomObjects(key), !savedData.contains(obj: object) else {return}
+        savedData.append(object)
         do {
             let encoder = JSONEncoder()
-            let data = try encoder.encode(data)
+            let data = try encoder.encode(savedData)
             UserDefaults.standard.set(data, forKey: key)
         } catch {
             print("Unable to Encode Array of Notes (\(error))")
