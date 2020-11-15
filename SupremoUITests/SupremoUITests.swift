@@ -9,6 +9,8 @@ import XCTest
 
 class SupremoUITests: XCTestCase {
 
+    var app: XCUIApplication!
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -16,19 +18,64 @@ class SupremoUITests: XCTestCase {
         continueAfterFailure = false
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
+        app = XCUIApplication()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+    func testAppFlow() throws {
         app.launch()
+        
+        //HomeScreenController
+        let homeScreenControllerView = app.otherElements["controller--HomeScreenController"]
+        XCTAssertTrue(homeScreenControllerView.exists)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let recentSearchTableView    = homeScreenControllerView.tables["tableview--recentSearchTableView"]
+        XCTAssertTrue(recentSearchTableView.exists)
+
+        wait(1.0)
+
+        let searchIconBarButton      = app.navigationBars.buttons["button--searchIconBarButton"]
+        XCTAssertTrue(searchIconBarButton.exists)
+        searchIconBarButton.tap()
+        
+        //SearchScreenController
+        let searchScreenControllerView = app.otherElements["controller--SearchScreenController"]
+        XCTAssertTrue(searchScreenControllerView.exists)
+
+        wait(1.0)
+        print(searchScreenControllerView.debugDescription)
+        let searchBar                  = searchScreenControllerView.searchFields["searchbar--searchBar"]
+        XCTAssertTrue(searchBar.exists)
+        
+        searchBar.typeText("batman")
+        app.buttons["Search"].tap()
+        
+        wait(3.0)
+        
+        let searchListingCell = searchScreenControllerView.tables.cells["tablecell--SearchListTableCell"].firstMatch
+        XCTAssertTrue(searchListingCell.exists)
+        searchListingCell.tap()
+        
+        wait(1.0)
+        
+        //CharacterDetailScreenController
+        let characterDetailScreenControllerView = app.otherElements["controller--CharacterDetailScreenController"]
+        XCTAssertTrue(characterDetailScreenControllerView.exists)
+
+        let characterDetailsTableView           = characterDetailScreenControllerView.tables["tableview--characterDetailsTableView"]
+        XCTAssertTrue(characterDetailsTableView.exists)
+
+        characterDetailsTableView.swipeUp()
+        characterDetailsTableView.swipeDown()
+        
+        wait(2.0)
+        
+        app.terminate()
     }
 
     func testLaunchPerformance() throws {
