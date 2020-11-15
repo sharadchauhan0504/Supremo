@@ -25,6 +25,26 @@ struct APIRouter<T: Codable> {
         queue.async {
             guard let request = router.request else {return}
             let task = self.session.dataTask(with: request) { (data, response, error) in
+                
+                
+                if let properData = router.request?.httpBody {
+                    do {
+                        let output = try JSONSerialization.jsonObject(with: properData, options: .allowFragments)
+                        print("Request Body: \(String(describing: output))")
+                        // Parse JSON
+                    } catch {
+                    }
+                }
+
+                if let properData = data {
+                    do {
+                        let output = try JSONSerialization.jsonObject(with: properData, options: .allowFragments)
+                        print("RESPONSE: \(String(describing: output))")
+                        // Parse JSON
+                    } catch {
+                    }
+                }
+                
                 if let httpResponse = response as? HTTPURLResponse {
                     curateResponseForUI(data, httpResponse.statusCode, error, completion: completion)
                 } else {
@@ -48,11 +68,11 @@ struct APIRouter<T: Codable> {
             return
         }
         
-        do {
-            let model = try JSONDecoder().decode(T.self, from: properData)
+        if let model = try? JSONDecoder().decode(T.self, from: properData) {
             completion(model, statusCode,  nil)
-        } catch {
-            print("decodingError: \(error)")
+        } else if let error = try? JSONDecoder().decode(SearchSuperHeroesErrorOutput.self, from: properData) {
+            completion(nil, statusCode,  NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey: error.error.capitalized]) as Error)
+        } else {
             completion(nil, statusCode, GenericErrors.decodingError)
         }
     }
