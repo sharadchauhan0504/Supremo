@@ -19,4 +19,18 @@ extension UIViewController {
         }
     }
     
+    func showActivityIndicator() {
+        let activityIndicator    = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.tag    = 10001
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
+    func removeActivityIndicator() {
+        DispatchQueue.main.async {
+            let activityIndicator = self.view.viewWithTag(10001)
+            activityIndicator?.removeFromSuperview()
+        }
+    }
 }
