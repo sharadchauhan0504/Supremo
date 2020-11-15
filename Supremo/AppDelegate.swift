@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setRootController() {
         let splashScreenController                                   = HomeScreenController()
         let navigationController                                     = UINavigationController(rootViewController: splashScreenController)
+        navigationController.view.backgroundColor                    = .black
+        navigationController.navigationBar.tintColor                 = .white
+        navigationController.navigationBar.barTintColor              = .black
         window                                                       = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController                                   = navigationController
         window?.makeKeyAndVisible()
