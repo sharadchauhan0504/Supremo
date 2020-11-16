@@ -9,7 +9,7 @@ import Foundation
 
 class HomeScreenViewModel {
     
-    func getRecentSearches() -> [SearchedResult] {
-        return RecentSearchManager<SearchedResult>.getCustomObjects(UserDefaultsKeys.recentSearches.key)
+    func getRecentlyViewed() -> [SearchedResult] {
+        return RecentSearchManager<SearchedResult>.getCustomObjects(UserDefaultsKeys.recentlyViewed.key)
     }
 }
