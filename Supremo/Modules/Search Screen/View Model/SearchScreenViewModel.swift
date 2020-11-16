@@ -15,6 +15,11 @@ class SearchScreenViewModel {
     //MARK:- Callbacks
     var apiFailureCallback: ((String) -> Void)?
     var getSearchedResultsCallback: (([SearchedResult]) -> Void)?
+   
+    //MARK:- Public methods
+    func getRecentSearches() -> [RecentSearches] {
+        return RecentSearchManager<RecentSearches>.getCustomObjects(UserDefaultsKeys.recentSearches.key)
+    }
     
     // MARK: - Perform
     func perform(_ action: SearchScreenActions) {
