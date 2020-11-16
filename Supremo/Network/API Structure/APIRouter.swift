@@ -25,26 +25,6 @@ struct APIRouter<T: Codable> {
         queue.async {
             guard let request = router.request else {return}
             let task = self.session.dataTask(with: request) { (data, response, error) in
-                
-                
-                if let properData = router.request?.httpBody {
-                    do {
-                        let output = try JSONSerialization.jsonObject(with: properData, options: .allowFragments)
-                        print("Request Body: \(String(describing: output))")
-                        // Parse JSON
-                    } catch {
-                    }
-                }
-
-                if let properData = data {
-                    do {
-                        let output = try JSONSerialization.jsonObject(with: properData, options: .allowFragments)
-                        print("RESPONSE: \(String(describing: output))")
-                        // Parse JSON
-                    } catch {
-                    }
-                }
-                
                 if let httpResponse = response as? HTTPURLResponse {
                     curateResponseForUI(data, httpResponse.statusCode, error, completion: completion)
                 } else {
@@ -52,9 +32,7 @@ struct APIRouter<T: Codable> {
                 }
             }
             task.resume()
-        }
-        
-        
+        }        
     }
     
     private func curateResponseForUI(_ data: Data?, _ statusCode: Int?, _ error: Error?, completion : @escaping (_ model : T?, _ statusCode: Int? , _ error : Error?) -> Void) {
