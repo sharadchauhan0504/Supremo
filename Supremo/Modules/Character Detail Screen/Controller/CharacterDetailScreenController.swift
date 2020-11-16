@@ -15,6 +15,7 @@ class CharacterDetailScreenController: UIViewController {
             characterDetailsTableView.accessibilityIdentifier = "tableview--characterDetailsTableView"
             characterDetailsTableView.registerNib(type: BasicDetailsTableCell.self)
             characterDetailsTableView.registerNib(type: DualLabelTableCell.self)
+            characterDetailsTableView.registerNib(type: PowerStatsTableCell.self)
         }
     }
     
@@ -62,30 +63,15 @@ class CharacterDetailScreenController: UIViewController {
 extension CharacterDetailScreenController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch items[indexPath.section] {
-        case .basic: return 300
-        case .appearance: return UITableView.automaticDimension
-        case .powerstats: return UITableView.automaticDimension
-        case .biography: return UITableView.automaticDimension
-        }
+        items[indexPath.section].rowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch items[section] {
-        case .basic: return 0.0
-        case .appearance: return 60
-        case .powerstats: return 60
-        case .biography: return 60
-        }
+        items[section].headerHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch items[section] {
-        case .basic: return nil
-        case .appearance: return addHeaderView("APPEARANCE", tableView.bounds.width)
-        case .powerstats: return addHeaderView("POWER STATS", tableView.bounds.width)
-        case .biography: return addHeaderView("BIOGRAPHY", tableView.bounds.width)
-        }
+        addHeaderView(items[section].headerTitle, tableView.bounds.width)
     }
 }
 
@@ -96,12 +82,7 @@ extension CharacterDetailScreenController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch items[section] {
-        case .basic: return 1
-        case .appearance: return 4
-        case .powerstats: return 0
-        case .biography: return 4
-        }
+        items[section].numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,45 +90,38 @@ extension CharacterDetailScreenController: UITableViewDataSource {
         let item = items[indexPath.section]
         switch item {
         case .basic:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "BasicDetailsTableCell", for: indexPath) as! BasicDetailsTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: item.identifier, for: indexPath) as! BasicDetailsTableCell
             cell.character = character
             return cell
         case .appearance:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DualLabelTableCell", for: indexPath) as! DualLabelTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: item.identifier, for: indexPath) as! DualLabelTableCell
             switch indexPath.row {
-            case 0:
-                cell.leftLabel.text  = "Hair Colour"
-                cell.rightLabel.text = character?.appearance.hairColor
-            case 1:
-                cell.leftLabel.text  = "Eye Colour"
-                cell.rightLabel.text = character?.appearance.eyeColor
-            case 2:
-                cell.leftLabel.text  = "Height"
-                cell.rightLabel.text = character?.appearance.height.first
-            case 3:
-                cell.leftLabel.text  = "Race"
-                cell.rightLabel.text = character?.appearance.race
+            case 0: cell.hairColor = character?.appearance.hairColor
+            case 1: cell.eyeColor  = character?.appearance.eyeColor
+            case 2: cell.height    = character?.appearance.height.first
+            case 3: cell.race      = character?.appearance.race
             default: break
             }
             return cell
         case .powerstats:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DualLabelTableCell", for: indexPath) as! DualLabelTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: item.identifier, for: indexPath) as! PowerStatsTableCell
+            switch indexPath.row {
+            case 0: cell.intelligence = character?.powerstats.intelligence
+            case 1: cell.strength     = character?.powerstats.strength
+            case 2: cell.speed        = character?.powerstats.speed
+            case 3: cell.durability   = character?.powerstats.durability
+            case 4: cell.power        = character?.powerstats.power
+            case 5: cell.combat       = character?.powerstats.combat
+            default: break
+            }
             return cell
         case .biography:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DualLabelTableCell", for: indexPath) as! DualLabelTableCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: item.identifier, for: indexPath) as! DualLabelTableCell
             switch indexPath.row {
-            case 0:
-                cell.leftLabel.text  = "Full Name"
-                cell.rightLabel.text = character?.biography.fullName
-            case 1:
-                cell.leftLabel.text  = "Place of Birth"
-                cell.rightLabel.text = character?.biography.placeOfBirth
-            case 2:
-                cell.leftLabel.text  = "First Appearance"
-                cell.rightLabel.text = character?.biography.firstAppearance
-            case 3:
-                cell.leftLabel.text  = "Publisher"
-                cell.rightLabel.text = character?.biography.publisher
+            case 0: cell.fullName        = character?.biography.fullName
+            case 1: cell.placeOfBirth    = character?.biography.placeOfBirth
+            case 2: cell.firstAppearance = character?.biography.firstAppearance
+            case 3: cell.publisher       = character?.biography.publisher
             default: break
             }
             return cell
