@@ -32,7 +32,7 @@ class HomeScreenController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getRecentSearches()
+        getRecentlyViewed()
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: Font(.installed(.PoppinsMedium), size: .custom(21.0)).instance, NSAttributedString.Key.foregroundColor: UIColor.warmPink]
     }
     
@@ -64,8 +64,8 @@ class HomeScreenController: UIViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func getRecentSearches() {
-        recentSearches = viewModel.getRecentSearches()
+    private func getRecentlyViewed() {
+        recentSearches = viewModel.getRecentlyViewed()
         recentSearchTableView.reloadData()
     }
     
@@ -95,7 +95,7 @@ extension HomeScreenController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView  = UIView(frame: CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 60.0))
         let label       = UILabel(frame: CGRect(x: 24.0, y: 0.0, width: tableView.bounds.width, height: 60))
-        label.text      = "Recent Searches"
+        label.text      = "Recently Viewed"
         label.textColor = .white
         label.font      = Font(.installed(.PoppinsRegular), size: .custom(20.0)).instance
         headerView.addSubview(label)
