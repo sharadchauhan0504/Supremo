@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Black" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vQ-mm-qUX">
-                                <rect key="frame" x="202" y="8" width="188" height="64"/>
+                                <rect key="frame" x="174" y="8" width="204" height="64"/>
                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -48,8 +48,8 @@
                             <constraint firstItem="lH4-z2-AZg" firstAttribute="top" secondItem="07o-XP-VcN" secondAttribute="top" constant="8" id="ZJi-ZR-eTc"/>
                             <constraint firstItem="1vQ-mm-qUX" firstAttribute="top" secondItem="07o-XP-VcN" secondAttribute="top" constant="8" id="cXv-lT-Szx"/>
                             <constraint firstItem="lH4-z2-AZg" firstAttribute="leading" secondItem="07o-XP-VcN" secondAttribute="leading" constant="36" id="dcn-T7-HDy"/>
-                            <constraint firstAttribute="trailing" secondItem="1vQ-mm-qUX" secondAttribute="trailing" constant="24" id="dhT-hg-j4c"/>
-                            <constraint firstItem="1vQ-mm-qUX" firstAttribute="leading" secondItem="lH4-z2-AZg" secondAttribute="trailing" constant="36" id="faf-Jm-euk"/>
+                            <constraint firstAttribute="trailing" secondItem="1vQ-mm-qUX" secondAttribute="trailing" constant="36" id="dhT-hg-j4c"/>
+                            <constraint firstItem="1vQ-mm-qUX" firstAttribute="leading" secondItem="lH4-z2-AZg" secondAttribute="trailing" constant="8" id="faf-Jm-euk"/>
                             <constraint firstItem="lH4-z2-AZg" firstAttribute="width" secondItem="07o-XP-VcN" secondAttribute="width" multiplier="130:414" id="gaJ-Ly-mJg"/>
                         </constraints>
                     </view>
