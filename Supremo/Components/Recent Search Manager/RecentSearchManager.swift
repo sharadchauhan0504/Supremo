@@ -8,10 +8,13 @@
 import Foundation
 
 enum UserDefaultsKeys {
+    
+    case recentlyViewed
     case recentSearches
     
     var key: String {
         switch self {
+        case .recentlyViewed: return "Supremo-recentlyViewed"
         case .recentSearches: return "Supremo-recentSearches"
         }
     }
