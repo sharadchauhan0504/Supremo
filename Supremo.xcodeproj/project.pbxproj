@@ -75,6 +75,9 @@
 		18C965DB255FBD90006D60F9 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C965C8255FBD90006D60F9 /* Poppins-MediumItalic.ttf */; };
 		18C965E2255FC107006D60F9 /* SearchScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C965E0255FC107006D60F9 /* SearchScreenController.swift */; };
 		18C965E3255FC107006D60F9 /* SearchScreenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C965E1255FC107006D60F9 /* SearchScreenController.xib */; };
+		18D1265D25623C010042D7A4 /* LinearProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1265C25623C010042D7A4 /* LinearProgressBarView.swift */; };
+		18D12664256246940042D7A4 /* PowerStatsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D12662256246940042D7A4 /* PowerStatsTableCell.swift */; };
+		18D12665256246940042D7A4 /* PowerStatsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D12663256246940042D7A4 /* PowerStatsTableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +172,9 @@
 		18C965C8255FBD90006D60F9 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		18C965E0255FC107006D60F9 /* SearchScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenController.swift; sourceTree = "<group>"; };
 		18C965E1255FC107006D60F9 /* SearchScreenController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchScreenController.xib; sourceTree = "<group>"; };
+		18D1265C25623C010042D7A4 /* LinearProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBarView.swift; sourceTree = "<group>"; };
+		18D12662256246940042D7A4 /* PowerStatsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerStatsTableCell.swift; sourceTree = "<group>"; };
+		18D12663256246940042D7A4 /* PowerStatsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PowerStatsTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,6 +399,7 @@
 		18C9650A255F7D16006D60F9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18D1265A25623BD70042D7A4 /* Custom Views */,
 				18C96589255FB29A006D60F9 /* Table Cells */,
 			);
 			path = Views;
@@ -584,6 +591,7 @@
 		18C96589255FB29A006D60F9 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				18D12661256246720042D7A4 /* Power Stats Table Cell */,
 				1872A753256163A9006B596C /* Dual Label Table Cell */,
 				1862334925612B2B001E7543 /* Basic Details Table Cell */,
 				184BC8A2256118880097D6F5 /* Search List Table Cell */,
@@ -650,6 +658,31 @@
 				18C965E1255FC107006D60F9 /* SearchScreenController.xib */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		18D1265A25623BD70042D7A4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				18D1265B25623BE10042D7A4 /* Linear Progress Bar */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		18D1265B25623BE10042D7A4 /* Linear Progress Bar */ = {
+			isa = PBXGroup;
+			children = (
+				18D1265C25623C010042D7A4 /* LinearProgressBarView.swift */,
+			);
+			path = "Linear Progress Bar";
+			sourceTree = "<group>";
+		};
+		18D12661256246720042D7A4 /* Power Stats Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				18D12662256246940042D7A4 /* PowerStatsTableCell.swift */,
+				18D12663256246940042D7A4 /* PowerStatsTableCell.xib */,
+			);
+			path = "Power Stats Table Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -755,6 +788,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18D12665256246940042D7A4 /* PowerStatsTableCell.xib in Resources */,
 				18C965D5255FBD90006D60F9 /* Poppins-LightItalic.ttf in Resources */,
 				18C965D6255FBD90006D60F9 /* Poppins-Bold.ttf in Resources */,
 				18C965D3255FBD90006D60F9 /* OFL.txt in Resources */,
@@ -818,6 +852,7 @@
 				1862334C25612B4B001E7543 /* BasicDetailsTableCell.swift in Sources */,
 				184BC898256115260097D6F5 /* SearchScreenActions.swift in Sources */,
 				184BC86A256109790097D6F5 /* SuperHeroSearchOutput.swift in Sources */,
+				18D1265D25623C010042D7A4 /* LinearProgressBarView.swift in Sources */,
 				18C96520255F7D68006D60F9 /* APIRouter.swift in Sources */,
 				18C96556255F7F8D006D60F9 /* UIViewControllerExtension.swift in Sources */,
 				18C96521255F7D68006D60F9 /* HTTPMethod.swift in Sources */,
@@ -842,6 +877,7 @@
 				18C964CE255F79C8006D60F9 /* Supremo.xcdatamodeld in Sources */,
 				18C9657E255F8337006D60F9 /* HomeScreenController.swift in Sources */,
 				1862335425614ADF001E7543 /* CharacterDetailScreenController.swift in Sources */,
+				18D12664256246940042D7A4 /* PowerStatsTableCell.swift in Sources */,
 				18C9651F255F7D68006D60F9 /* Routable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
