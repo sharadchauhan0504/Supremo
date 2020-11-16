@@ -17,5 +17,6 @@
 ## App FLow 
 - Home screen -> Search screen -> Details Screen
 - Home Screen/Recent search -> Details Screen
-- On clicking search items, it is stored in recent searches
+- On clicking search, after successful response, searched query is saved in recent searches
+- On clicking search items, it is stored in recently viewed
 - Recent searched items are available offline too.
