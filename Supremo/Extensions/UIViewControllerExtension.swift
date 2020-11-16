@@ -21,6 +21,7 @@ extension UIViewController {
     
     func showActivityIndicator() {
         let activityIndicator    = UIActivityIndicatorView(style: .large)
+        activityIndicator.color  = .white
         activityIndicator.center = view.center
         activityIndicator.tag    = 10001
         view.addSubview(activityIndicator)
