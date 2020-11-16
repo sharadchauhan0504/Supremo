@@ -78,6 +78,8 @@
 		18D1265D25623C010042D7A4 /* LinearProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1265C25623C010042D7A4 /* LinearProgressBarView.swift */; };
 		18D12664256246940042D7A4 /* PowerStatsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D12662256246940042D7A4 /* PowerStatsTableCell.swift */; };
 		18D12665256246940042D7A4 /* PowerStatsTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D12663256246940042D7A4 /* PowerStatsTableCell.xib */; };
+		18D1266F256264270042D7A4 /* SingleLabelTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1266D256264270042D7A4 /* SingleLabelTableCell.swift */; };
+		18D12670256264270042D7A4 /* SingleLabelTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D1266E256264270042D7A4 /* SingleLabelTableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +177,8 @@
 		18D1265C25623C010042D7A4 /* LinearProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearProgressBarView.swift; sourceTree = "<group>"; };
 		18D12662256246940042D7A4 /* PowerStatsTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerStatsTableCell.swift; sourceTree = "<group>"; };
 		18D12663256246940042D7A4 /* PowerStatsTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PowerStatsTableCell.xib; sourceTree = "<group>"; };
+		18D1266D256264270042D7A4 /* SingleLabelTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLabelTableCell.swift; sourceTree = "<group>"; };
+		18D1266E256264270042D7A4 /* SingleLabelTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleLabelTableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,6 +595,7 @@
 		18C96589255FB29A006D60F9 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
+				18D126692562615D0042D7A4 /* Single Label Table Cell */,
 				18D12661256246720042D7A4 /* Power Stats Table Cell */,
 				1872A753256163A9006B596C /* Dual Label Table Cell */,
 				1862334925612B2B001E7543 /* Basic Details Table Cell */,
@@ -683,6 +688,15 @@
 				18D12663256246940042D7A4 /* PowerStatsTableCell.xib */,
 			);
 			path = "Power Stats Table Cell";
+			sourceTree = "<group>";
+		};
+		18D126692562615D0042D7A4 /* Single Label Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+				18D1266D256264270042D7A4 /* SingleLabelTableCell.swift */,
+				18D1266E256264270042D7A4 /* SingleLabelTableCell.xib */,
+			);
+			path = "Single Label Table Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -811,6 +825,7 @@
 				18C964D0255F79CC006D60F9 /* Assets.xcassets in Resources */,
 				1862334D25612B4B001E7543 /* BasicDetailsTableCell.xib in Resources */,
 				18C965A2255FB29A006D60F9 /* RecentSearchListTableCell.xib in Resources */,
+				18D12670256264270042D7A4 /* SingleLabelTableCell.xib in Resources */,
 				18C965DA255FBD90006D60F9 /* Poppins-Italic.ttf in Resources */,
 				18C965CC255FBD90006D60F9 /* Poppins-BoldItalic.ttf in Resources */,
 				18C965CE255FBD90006D60F9 /* Poppins-Medium.ttf in Resources */,
@@ -847,6 +862,7 @@
 				18C965E2255FC107006D60F9 /* SearchScreenController.swift in Sources */,
 				18C96522255F7D68006D60F9 /* RawJSONOverHTTP.swift in Sources */,
 				184BC8A5256118E20097D6F5 /* SearchListTableCell.swift in Sources */,
+				18D1266F256264270042D7A4 /* SingleLabelTableCell.swift in Sources */,
 				18C9651D255F7D68006D60F9 /* MockURLSession.swift in Sources */,
 				18C965A1255FB29A006D60F9 /* RecentSearchListTableCell.swift in Sources */,
 				1862334C25612B4B001E7543 /* BasicDetailsTableCell.swift in Sources */,
