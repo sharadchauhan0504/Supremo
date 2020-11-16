@@ -11,3 +11,12 @@ import Foundation
 struct SearchSuperHeroesErrorOutput: Codable {
     let response, error: String
 }
+
+
+struct RecentSearches: Codable, Equatable {
+    let query: String
+    
+    static func == (lhs: RecentSearches, rhs: RecentSearches) -> Bool {
+        return lhs.query == rhs.query
+    }
+}
