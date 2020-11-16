@@ -48,7 +48,6 @@ class SupremoUITests: XCTestCase {
         XCTAssertTrue(searchScreenControllerView.exists)
 
         wait(1.0)
-        print(searchScreenControllerView.debugDescription)
         let searchBar                  = searchScreenControllerView.searchFields["searchbar--searchBar"]
         XCTAssertTrue(searchBar.exists)
         
