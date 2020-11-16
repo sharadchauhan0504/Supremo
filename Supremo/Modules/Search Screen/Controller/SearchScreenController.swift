@@ -24,13 +24,16 @@ class SearchScreenController: UIViewController {
         didSet {
             searchedResultsTableView.accessibilityIdentifier = "tableview--searchedResultsTableView"
             searchedResultsTableView.registerNib(type: SearchListTableCell.self)
+            searchedResultsTableView.registerNib(type: SingleLabelTableCell.self)
         }
     }
     
     //MARK:- Private variables
     private let viewModel       = SearchScreenViewModel()
     private var searchedResults = [SearchedResult]()
-    
+    private var recentSearches  = [RecentSearches]()
+    private var isSearching     = false
+
     //MARK:- Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +52,11 @@ class SearchScreenController: UIViewController {
     }
     
     //MARK:- Private methods
+    private func getRecentSearches() {
+        recentSearches = viewModel.getRecentSearches()
+        searchedResultsTableView.reloadData()
+    }
+    
     private func openCharacterDetailScreen(_ character: SearchedResult) {
         let controller       = CharacterDetailScreenController()
         controller.character = character
@@ -63,8 +71,11 @@ class SearchScreenController: UIViewController {
         
         viewModel.getSearchedResultsCallback = { [weak self] results in
             guard let strongSelf = self else {return}
+            strongSelf.isSearching     = false
             strongSelf.searchedResults = results
             strongSelf.removeActivityIndicator()
+            let recentSearch = RecentSearches(query: query)
+            RecentSearchManager<RecentSearches>.saveCustomObjects(recentSearch, UserDefaultsKeys.recentSearches.key)
             DispatchQueue.main.async {
                 strongSelf.searchedResultsTableView.reloadData()
             }
@@ -91,27 +102,48 @@ extension SearchScreenController: UITableViewDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) else {return}
         cell.bounceEffect { [weak self] in
             guard let strongSelf = self else {return}
-            let character = strongSelf.searchedResults[indexPath.row]
-            RecentSearchManager<SearchedResult>.saveCustomObjects(character, UserDefaultsKeys.recentSearches.key)
-            strongSelf.openCharacterDetailScreen(character)
+            if strongSelf.isSearching {
+                let query                 = strongSelf.recentSearches[indexPath.row].query
+                strongSelf.searchBar.text = query
+                strongSelf.performSearch(query)
+            } else {
+                let character = strongSelf.searchedResults[indexPath.row]
+                RecentSearchManager<SearchedResult>.saveCustomObjects(character, UserDefaultsKeys.recentlyViewed.key)
+                strongSelf.openCharacterDetailScreen(character)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140.0
+        if isSearching {
+            return UITableView.automaticDimension
+        } else {
+            return 140.0
+        }
     }
 }
 
 extension SearchScreenController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        searchedResults.count
+        if isSearching {
+            return recentSearches.count
+        } else {
+            return searchedResults.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchListTableCell", for: indexPath) as! SearchListTableCell
-        cell.searchedResult = searchedResults[indexPath.row]
-        return cell
+        if isSearching {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SingleLabelTableCell", for: indexPath) as! SingleLabelTableCell
+            cell.titleLabel.text = recentSearches[indexPath.row].query
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchListTableCell", for: indexPath) as! SearchListTableCell
+            cell.searchedResult = searchedResults[indexPath.row]
+            return cell
+        }
+        
     }
     
 }
@@ -119,8 +151,14 @@ extension SearchScreenController: UITableViewDataSource {
 //MARK:- UISearchbar delegate
 extension SearchScreenController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isSearching = true
+        getRecentSearches()
+    }
+ 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else { return }
+        isSearching = false
         view.endEditing(true)
         performSearch(text.trimmingCharacters(in: .whitespacesAndNewlines))
     }
@@ -128,6 +166,8 @@ extension SearchScreenController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
         searchBar.text = nil
+        isSearching    = false
+        searchedResultsTableView.reloadData()
     }
     
 }
