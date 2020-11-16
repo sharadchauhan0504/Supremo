@@ -120,17 +120,14 @@ extension SearchScreenController: UITableViewDataSource {
 extension SearchScreenController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarSearchButtonClicked")
         guard let text = searchBar.text else { return }
         view.endEditing(true)
         performSearch(text.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBarCancelButtonClicked")
         view.endEditing(true)
         searchBar.text = nil
-        searchedResultsTableView.reloadData()
     }
     
 }
